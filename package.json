@@ -1,6 +1,6 @@
 {
   "name": "poe-trade-notable-description",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Adds descriptions for the new cluster jewel notables on the official Path of Exile trade site.",
   "main": "content.js",
   "dependencies": {

@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "poe-trade-notable-description",
-  "version": "1.0.0",
-  "description": "Adds descriptions for the new cluster jewel notables on the official Path of Exile trade site.",
+  "version": "0.0.1",
+  "description": "Adds descriptions for the new cluster jewel notables on the official Path of Exile trade site. Source available at: https://github.com/moxaj/poe-trade-notable-description.",
   "content_scripts": [
     {
       "css": [
