@@ -1,0 +1,30 @@
+{
+  "name": "poe-trade-notable-description",
+  "version": "1.0.0",
+  "description": "Adds descriptions for the new cluster jewel notables on the official Path of Exile trade site.",
+  "main": "content.js",
+  "dependencies": {
+    "eslint": "^6.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moxaj/poe-trade-notable-description.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moxaj/poe-trade-notable-description/issues"
+  },
+  "homepage": "https://github.com/moxaj/poe-trade-notable-description#readme"
+}
