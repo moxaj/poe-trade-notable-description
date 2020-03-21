@@ -286,31 +286,12 @@
   const tradeItemObserver = new MutationObserver(mutations =>
     mutations.forEach(mutation => {
       mutation.addedNodes?.forEach(node => {
-        if (!(node instanceof HTMLElement)) {
-          return
-        }
-
-        node.querySelectorAll('div.explicitMod').forEach(explicitModDiv => {
-          const groups = /1 Added Passive Skill is (?<notableName>.*)/.exec(explicitModDiv.querySelector('span.lc.s')?.textContent)
-          if (!groups || groups.length !== 2) {
-            // Different stat
-            return
-          }
-
-          const notableName = groups.notableName
-          if (notableName === 'a Jewel Socket') {
-            // We don't care about jewel sockets
-            return
-          }
-
-          const notableDescription = notables[notableName]
-          if (!notableDescription) {
-            // Unknown notable?
-            return
-          }
-
-          // Add each line of the description below the mod
-          for (const notableDescriptionLine of notableDescription.split(/\r?\n/)) {
+        node.querySelectorAll?.('div.explicitMod').forEach(explicitModDiv => {
+          const notableName = /1 Added Passive Skill is (?<notableName>.*)/
+            .exec(explicitModDiv.querySelector('span.lc.s')?.textContent)
+            ?.groups
+            ?.notableName
+          for (const notableDescriptionLine of notables[notableName]?.split(/\r?\n/) ?? []) {
             const descriptionDiv = document.createElement('div')
 
             const descriptionSpan = document.createElement('span')
