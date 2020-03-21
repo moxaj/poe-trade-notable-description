@@ -282,17 +282,22 @@
     'Blessed': '6% increased maximum Life\n10% increased maximum Mana\n+13% to Chaos Resistance',
     'Student of Decay': '25% increased Damage over Time\n+13% to Chaos Resistance'
   }
-  const tradeItemObserver = new MutationObserver(mutations => {
-    (mutations || []).forEach(mutation => {
-      (mutation.addedNodes || []).forEach(node => {
+
+  const tradeItemObserver = new MutationObserver(mutations =>
+    mutations.forEach(mutation => {
+      mutation.addedNodes?.forEach(node => {
+        if (!(node instanceof HTMLElement)) {
+          return
+        }
+
         node.querySelectorAll('div.explicitMod').forEach(explicitModDiv => {
-          const groups = /1 Added Passive Skill is (.*)/.exec(explicitModDiv.querySelector('span.lc.s').textContent)
+          const groups = /1 Added Passive Skill is (?<notableName>.*)/.exec(explicitModDiv.querySelector('span.lc.s')?.textContent)
           if (!groups || groups.length !== 2) {
             // Different stat
             return
           }
 
-          const notableName = groups[1]
+          const notableName = groups.notableName
           if (notableName === 'a Jewel Socket') {
             // We don't care about jewel sockets
             return
@@ -312,29 +317,24 @@
             descriptionSpan.textContent = notableDescriptionLine
             descriptionDiv.appendChild(descriptionSpan)
 
-            explicitModDiv.parentNode.insertBefore(descriptionDiv, explicitModDiv.nextSibling)
+            explicitModDiv.parentNode?.insertBefore(descriptionDiv, explicitModDiv.nextSibling)
           }
         })
       })
     })
-  })
+  )
   const addResultSetObserver = resultSetDiv => {
     tradeItemObserver.observe(resultSetDiv, { childList: true })
   }
-  const resultSetObserver = new MutationObserver(mutations => {
-    (mutations || []).forEach(mutation => {
-      (mutation.addedNodes || []).forEach(node => {
-        const classList = node.classList
-        if (!classList) {
-          return
-        }
-
-        if (classList.contains('resultset')) {
+  const resultSetObserver = new MutationObserver(mutations =>
+    mutations.forEach(mutation => {
+      mutation.addedNodes?.forEach(node => {
+        if (node.classList?.contains('resultset')) {
           addResultSetObserver(node)
         }
       })
     })
-  })
+  )
 
   const resultSetDiv = document.querySelector('div.resultset')
   if (resultSetDiv) {
