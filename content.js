@@ -1,3 +1,10 @@
+// ==UserScript==
+// @name         poe-trade-notable-description
+// @version      0.1
+// @description  Adds descriptions for the new cluster jewel notables on the official Path of Exile trade site.
+// @match        https://www.pathofexile.com/trade/*
+// ==/UserScript==
+
 (() => {
   const notables = {
     'Prodigious Defence': '3% Chance to Block Spell Damage\n30% increased Attack Damage while holding a Shield\n+3% Chance to Block Attack Damage',
