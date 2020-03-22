@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         poe-trade-notable-description
-// @version      0.1
+// @version      0.2
 // @description  Adds descriptions for the new cluster jewel notables on the official Path of Exile trade site.
 // @match        https://www.pathofexile.com/trade/*
 // ==/UserScript==
@@ -294,10 +294,7 @@
     mutations.forEach(mutation => {
       mutation.addedNodes?.forEach(node => {
         node.querySelectorAll?.('div.explicitMod').forEach(explicitModDiv => {
-          const notableName = /1 Added Passive Skill is (?<notableName>.*)/
-            .exec(explicitModDiv.querySelector('span.lc.s')?.textContent)
-            ?.groups
-            ?.notableName
+          const notableName = /1 Added Passive Skill is (.*)/.exec(explicitModDiv.querySelector('span.lc.s')?.textContent)?.[1]
           for (const notableDescriptionLine of notables[notableName]?.split(/\r?\n/) ?? []) {
             const descriptionDiv = document.createElement('div')
 
