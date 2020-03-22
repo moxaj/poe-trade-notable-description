@@ -3,6 +3,7 @@
 // @version      0.2
 // @description  Adds descriptions for the new cluster jewel notables on the official Path of Exile trade site.
 // @match        https://www.pathofexile.com/trade/*
+// @license      MIT
 // ==/UserScript==
 
 (() => {
